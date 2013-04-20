@@ -17,17 +17,17 @@ public class Reminder {
     public static final String REMINDER_TIME = "REMINDER_TIME";
     public static final String REMINDER_TEXT = "REMINDER_TEXT";
 
-    private Integer id;
+    private Long id;
     private ReminderType type;
     private Location location;
     private Date reminderTime;
     private String text;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

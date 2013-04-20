@@ -6,12 +6,7 @@
     >
     <ListView android:id="@+id/reminders"
               android:layout_width="0dp"
-              android:layout_weight="1"
+              android:layout_weight="fill_parent"
               android:layout_height="wrap_content"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_send"
-            android:onClick="sendMessage"/>
 </LinearLayout>
 

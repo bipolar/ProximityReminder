@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_LOCATION_ENTRIES = "CREATE TABLE " + Location.LOCATION_TABLE_NAME + " (" +
             Location._ID + " INTEGER PRIMARY KEY," +
-            Location.COLUMN_NAME + " TEXT," +
+            Location.COLUMN_NAME + " TEXT UNIQUE," +
             Location.COLUMN_WIFI_NAME + " TEXT" +
             " )";
 
@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Reminder._ID + " INTEGER PRIMARY KEY," +
             Reminder.REMINDER_TEXT + " TEXT," +
             Reminder.LOCATION_ID + " INTEGER," +
-            Reminder.REMINDER_TIME + " TIMESTAMP," +
+            Reminder.REMINDER_TIME + " INTEGER," +
             Reminder.TYPE + " INTEGER" +
             " )";
 

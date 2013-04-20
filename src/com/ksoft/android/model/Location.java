@@ -13,17 +13,17 @@ public class Location {
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_WIFI_NAME = "WIFI_NAME";
 
-    private Integer id;
+    private Long id;
     private String name;
     private String wifiName;
     // GPS coordinates maybe
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
