@@ -1,29 +1,102 @@
 package com.ksoft.android;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.*;
+import com.ksoft.android.dao.ReminderDatabase;
+import com.ksoft.android.model.Reminder;
 
 public class ReminderActivity extends Activity
 {
-    public final static String EXTRA_MESSAGE = "com.ksoft.android.MESSAGE";
+    private ReminderDatabase dbHelper;
+    private SimpleCursorAdapter dataAdapter;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        dbHelper = new ReminderDatabase(this);
+
+        //Generate ListView from SQLite Database
+        displayListView();
     }
 
-    /** Called when the user clicks the Send button */
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.edit_message);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
+    private void displayListView() {
 
-        startActivity(intent);
+
+        Cursor cursor = dbHelper.selectReminders();
+
+        // The desired columns to be bound
+        String[] columns = new String[] {
+                Reminder.REMINDER_TIME,
+                Reminder.REMINDER_TEXT,
+                Reminder.LOCATION_ID
+        };
+
+        // the XML defined views which the data will be bound to
+        int[] to = new int[] {
+                R.id.date,
+                R.id.reminder,
+                R.id.location,
+        };
+
+        // create the adapter using the cursor pointing to the desired data
+        //as well as the layout information
+        dataAdapter = new SimpleCursorAdapter(
+                this,
+                R.layout.reminderrow,
+                cursor,
+                columns,
+                to);
+
+        ListView listView = (ListView) findViewById(R.id.reminders);
+        // Assign adapter to ListView
+        listView.setAdapter(dataAdapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> listView, View view,
+                                    int position, long id) {
+                // Get the cursor, positioned to the corresponding row in the result set
+                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+
+                // Get the state's capital from this row in the database.
+                String countryCode =
+                        cursor.getString(cursor.getColumnIndexOrThrow("code"));
+                Toast.makeText(getApplicationContext(),
+                        countryCode, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+//        EditText myFilter = (EditText) findViewById(R.id.myFilter);
+//        myFilter.addTextChangedListener(new TextWatcher() {
+//
+//            public void afterTextChanged(Editable s) {
+//            }
+//
+//            public void beforeTextChanged(CharSequence s, int start,
+//                                          int count, int after) {
+//            }
+//
+//            public void onTextChanged(CharSequence s, int start,
+//                                      int before, int count) {
+//                dataAdapter.getFilter().filter(s.toString());
+//            }
+//        });
+
+//        dataAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+//            public Cursor runQuery(CharSequence constraint) {
+//                return dbHelper.fetchCountriesByName(constraint.toString());
+//            }
+//        });
+
     }
 }

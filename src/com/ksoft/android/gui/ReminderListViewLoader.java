@@ -13,7 +13,7 @@ import com.ksoft.android.model.Reminder;
  * Date: 4/17/13
  * Time: 3:50 PM
  */
-public class ReminderListViewLoader extends ListActivity
+public class ReminderListViewLoader {/*extends ListActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     // This is the Adapter being used to display the list's data
@@ -85,5 +85,5 @@ public class ReminderListViewLoader extends ListActivity
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Do something when a list item is clicked
-    }
+    }   */
 }

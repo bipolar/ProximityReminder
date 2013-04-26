@@ -3,6 +3,7 @@ package com.ksoft.android.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import com.ksoft.android.model.Location;
 import com.ksoft.android.model.Reminder;
 
@@ -40,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
+        Log.d("DatabaseHelper", "Creating tables!");
         db.execSQL(SQL_CREATE_LOCATION_ENTRIES);
         db.execSQL(SQL_CREATE_REMINDER_ENTRIES);
     }
@@ -53,4 +55,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
+
+
 }

@@ -12,13 +12,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name="com.ksoft.android.DisplayMessageActivity"
-                android:label="@string/title_activity_display_message"
-                >
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.ksoft.android.ReminderActivity" />
-        </activity>
     </application>
 </manifest> 

@@ -8,6 +8,8 @@ import android.util.Log;
 import com.ksoft.android.model.Location;
 import com.ksoft.android.model.Reminder;
 
+import java.sql.SQLException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Catalin Samarghitan
@@ -95,6 +97,12 @@ public class ReminderDatabase{
             mCursor.moveToFirst();
         }
         return mCursor; // iterate to get each value.
+    }
+
+    public void close() {
+        if (dbHelper != null) {
+            dbHelper.close();
+        }
     }
 
     private void debug(String msg) {
