@@ -11,7 +11,7 @@ import java.util.Date;
 public class Reminder {
 
     public static final String REMINDER_TABLE_NAME = "REMINDER";
-    public static final String _ID = "ID";
+    public static final String _ID = "_ID";
     public static final String LOCATION_ID = "LOCATION_ID";
     public static final String TYPE = "REMINDER_TYPE";
     public static final String REMINDER_TIME = "REMINDER_TIME";

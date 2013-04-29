@@ -15,17 +15,17 @@ import com.ksoft.android.model.Reminder;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "ProximityReminder.db";
 
     private static final String SQL_CREATE_LOCATION_ENTRIES = "CREATE TABLE " + Location.LOCATION_TABLE_NAME + " (" +
-            Location._ID + " INTEGER PRIMARY KEY," +
+            Location._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             Location.COLUMN_NAME + " TEXT UNIQUE," +
             Location.COLUMN_WIFI_NAME + " TEXT" +
             " )";
 
     private static final String SQL_CREATE_REMINDER_ENTRIES = "CREATE TABLE " + Reminder.REMINDER_TABLE_NAME + " (" +
-            Reminder._ID + " INTEGER PRIMARY KEY," +
+            Reminder._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             Reminder.REMINDER_TEXT + " TEXT," +
             Reminder.LOCATION_ID + " INTEGER," +
             Reminder.REMINDER_TIME + " INTEGER," +

@@ -90,7 +90,7 @@ public class ReminderDatabase{
     }
 
     public Cursor selectReminders() {
-        String[] cols = new String[] {Reminder._ID, Reminder.REMINDER_TEXT, Reminder.REMINDER_TIME, Reminder.TYPE, Reminder.LOCATION_ID};
+        String[] cols = new String[] {Reminder._ID + " as _id", Reminder.REMINDER_TEXT, Reminder.REMINDER_TIME, Reminder.TYPE, Reminder.LOCATION_ID};
         Cursor mCursor = database.query(Reminder.REMINDER_TABLE_NAME,cols,null
                 , null, null, null, null, null);
         if (mCursor != null) {

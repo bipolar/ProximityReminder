@@ -9,7 +9,7 @@ package com.ksoft.android.model;
 public class Location {
 
     public static final String LOCATION_TABLE_NAME = "LOCATION";
-    public static final String _ID = "ID";
+    public static final String _ID = "_ID";
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_WIFI_NAME = "WIFI_NAME";
 
