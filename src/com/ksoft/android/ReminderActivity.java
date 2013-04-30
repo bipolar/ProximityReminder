@@ -13,6 +13,7 @@ import com.ksoft.android.model.Reminder;
 
 public class ReminderActivity extends Activity
 {
+    // TODO clean up, comments and some logs
     private ReminderDatabase dbHelper;
 
     private Button mAddReminderButton;

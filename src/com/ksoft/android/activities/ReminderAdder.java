@@ -26,6 +26,8 @@ import java.util.Date;
 public class ReminderAdder extends Activity {
     public static final String TAG = "ReminderAdder";
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    // TODO add time of the reminder
+    // TODO add location management
 
     private EditText mReminderEditText;
     private EditText mReminderTypeEditText;
@@ -53,6 +55,7 @@ public class ReminderAdder extends Activity {
         mReminderTypeEditText = (EditText) findViewById(R.id.reminderTypeEditText);
         mReminderTypeSpinner = (Spinner) findViewById(R.id.reminderTypeSpinner);
         mReminderDateEditText = (EditText) findViewById(R.id.reminderDateEditText);
+        // TODO add an icon to the date picker
         mReminderDatePicker = (Button) findViewById(R.id.reminderDatePicker);
         mReminderSaveButton = (Button) findViewById(R.id.reminderSaveButton);
 
@@ -131,6 +134,7 @@ public class ReminderAdder extends Activity {
         // Get values from UI
         String text = mReminderEditText.getText().toString();
 //        String type = mReminderTypeEditText.getText().toString();
+        // TODO get the actual type selected
 
         Reminder reminder = new Reminder();
         reminder.setText(text);

@@ -15,6 +15,7 @@ import com.ksoft.android.model.Reminder;
  * Time: 7:02 PM
  */
 public class ReminderDatabase{
+    // TODO clean up, comments and some logs
 
     private DatabaseHelper dbHelper;
 
