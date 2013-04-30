@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="6dip" >
+                android:orientation="horizontal">
 
     <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/reminder"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/date"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/reminder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="wrap_content"/>
 
 
-</RelativeLayout>
+</LinearLayout>

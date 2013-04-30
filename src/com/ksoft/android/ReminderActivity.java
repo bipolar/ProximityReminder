@@ -14,7 +14,6 @@ import com.ksoft.android.model.Reminder;
 public class ReminderActivity extends Activity
 {
     private ReminderDatabase dbHelper;
-    private SimpleCursorAdapter dataAdapter;
 
     private Button mAddReminderButton;
 
@@ -61,7 +60,7 @@ public class ReminderActivity extends Activity
 
         // create the adapter using the cursor pointing to the desired data
         //as well as the layout information
-        dataAdapter = new SimpleCursorAdapter(
+        SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(
                 this,
                 R.layout.reminderrow,
                 cursor,
@@ -81,10 +80,10 @@ public class ReminderActivity extends Activity
                 Cursor cursor = (Cursor) listView.getItemAtPosition(position);
 
                 // Get the state's capital from this row in the database.
-                String countryCode =
-                        cursor.getString(cursor.getColumnIndexOrThrow("code"));
+                String reminderText =
+                        cursor.getString(cursor.getColumnIndexOrThrow(Reminder.REMINDER_TEXT));
                 Toast.makeText(getApplicationContext(),
-                        countryCode, Toast.LENGTH_SHORT).show();
+                        reminderText, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -93,6 +92,7 @@ public class ReminderActivity extends Activity
 
     private void launchReminderAdder() {
         Intent i = new Intent(this, ReminderAdder.class);
+
         startActivity(i);
     }
 }

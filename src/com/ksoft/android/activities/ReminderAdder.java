@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.ksoft.android.R;
+import com.ksoft.android.dao.ReminderDatabase;
 import com.ksoft.android.model.Reminder;
 import com.ksoft.android.model.ReminderType;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +25,7 @@ import java.util.Calendar;
  */
 public class ReminderAdder extends Activity {
     public static final String TAG = "ReminderAdder";
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     private EditText mReminderEditText;
     private EditText mReminderTypeEditText;
@@ -29,12 +33,9 @@ public class ReminderAdder extends Activity {
     private EditText mReminderDateEditText;
     private Button mReminderDatePicker;
 
-    private int mYear;
-    private int mMonth;
-    private int mDay;
+    private Date reminderDate;
 
     private Button mReminderSaveButton;
-    private Reminder mReminder;
 
     private static final int DATE_DIALOG_ID = 1;
 
@@ -79,9 +80,7 @@ public class ReminderAdder extends Activity {
             }
         });
         final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
+        reminderDate = c.getTime();
 
         updateDisplay();
     }
@@ -92,7 +91,7 @@ public class ReminderAdder extends Activity {
             case DATE_DIALOG_ID:
                 return new DatePickerDialog(this,
                         mDateSetListener,
-                        mYear, mMonth, mDay);
+                        reminderDate.getYear(), reminderDate.getMonth(), reminderDate.getDay());
         }
         return null;
     }
@@ -102,20 +101,17 @@ public class ReminderAdder extends Activity {
 
                 public void onDateSet(DatePicker view, int year, int monthOfYear,
                                       int dayOfMonth) {
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
+                    reminderDate.setYear(year);
+                    reminderDate.setMonth(monthOfYear);
+                    reminderDate.setDate(dayOfMonth);
+
                     updateDisplay();
                 }
             };
 
     private void updateDisplay() {
         mReminderDateEditText.setText(
-                new StringBuilder()
-                        // Month is 0 based so add 1
-                        .append(mMonth + 1).append("-")
-                        .append(mDay).append("-")
-                        .append(mYear).append(" "));
+                sdf.format(reminderDate));
     }
 
     /**
@@ -133,13 +129,19 @@ public class ReminderAdder extends Activity {
      */
     protected void createReminderEntry() {
         // Get values from UI
-        String name = mReminderEditText.getText().toString();
-        String type = mReminderTypeEditText.getText().toString();
+        String text = mReminderEditText.getText().toString();
+//        String type = mReminderTypeEditText.getText().toString();
+
+        Reminder reminder = new Reminder();
+        reminder.setText(text);
+        reminder.setType(ReminderType.TIME);
+        reminder.setReminderTime(reminderDate);
 
         // Ask the Contact provider to create a new contact
-        Log.i(TAG, "Creating reminder : " + mReminder);
+        Log.i(TAG, "Creating reminder : " + reminder);
         try {
             // create a reminder in the db
+            new ReminderDatabase(this).createReminder(reminder);
             // reset services
         } catch (Exception e) {
             // Display warning
