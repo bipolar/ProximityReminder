@@ -52,9 +52,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DROP_REMINDER_TABLE);
         onCreate(db);
     }
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    /*public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
-    }
+    }*/
 
 
 }

@@ -1,11 +1,13 @@
 package com.ksoft.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import com.ksoft.android.activities.ReminderAdder;
 import com.ksoft.android.dao.ReminderDatabase;
 import com.ksoft.android.model.Reminder;
 
@@ -14,12 +16,23 @@ public class ReminderActivity extends Activity
     private ReminderDatabase dbHelper;
     private SimpleCursorAdapter dataAdapter;
 
+    private Button mAddReminderButton;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        mAddReminderButton = (Button) findViewById(R.id.addReminder);
+        // Register handler for UI elements
+        mAddReminderButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("ReminderActivity", "mAddAccountButton clicked");
+                launchReminderAdder();
+            }
+        });
 
         dbHelper = new ReminderDatabase(this);
 
@@ -76,27 +89,10 @@ public class ReminderActivity extends Activity
             }
         });
 
-//        EditText myFilter = (EditText) findViewById(R.id.myFilter);
-//        myFilter.addTextChangedListener(new TextWatcher() {
-//
-//            public void afterTextChanged(Editable s) {
-//            }
-//
-//            public void beforeTextChanged(CharSequence s, int start,
-//                                          int count, int after) {
-//            }
-//
-//            public void onTextChanged(CharSequence s, int start,
-//                                      int before, int count) {
-//                dataAdapter.getFilter().filter(s.toString());
-//            }
-//        });
+    }
 
-//        dataAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-//            public Cursor runQuery(CharSequence constraint) {
-//                return dbHelper.fetchCountriesByName(constraint.toString());
-//            }
-//        });
-
+    private void launchReminderAdder() {
+        Intent i = new Intent(this, ReminderAdder.class);
+        startActivity(i);
     }
 }

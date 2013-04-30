@@ -8,8 +8,6 @@ import android.util.Log;
 import com.ksoft.android.model.Location;
 import com.ksoft.android.model.Reminder;
 
-import java.sql.SQLException;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Catalin Samarghitan
@@ -24,7 +22,7 @@ public class ReminderDatabase{
 
     /**
      *
-     * @param context
+     * @param context Application context
      */
     public ReminderDatabase(Context context){
         debug("Building new Reminder Database");
